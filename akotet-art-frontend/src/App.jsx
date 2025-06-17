@@ -11,6 +11,7 @@ function App() {
     <Routes>
       <Route path="/" element={<LandingPage />} />
       <Route path="/browse" element={<UserDashboard />} />
+      <Route path="/dashboard" element={<UserDashboard />} /> {/* Added dashboard route */}
       <Route path="/product/:id" element={<ProductDetail />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />

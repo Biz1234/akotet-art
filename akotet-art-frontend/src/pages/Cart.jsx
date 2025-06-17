@@ -30,6 +30,12 @@ function Cart() {
   const handleSubmitOrder = async (e) => {
     e.preventDefault();
     setError('');
+
+    if (cart.length === 0) {
+      setError(t('cart.empty'));
+      return;
+    }
+
     if (!file) {
       setError(t('order.file_required'));
       return;
@@ -42,9 +48,17 @@ function Cart() {
       return;
     }
 
+    const items = cart.map(({ product_id, quantity }) => ({ product_id, quantity }));
+    console.log('Cart items to submit:', items);
+
     const formData = new FormData();
-    formData.append('items', JSON.stringify(cart.map(({ product_id, quantity }) => ({ product_id, quantity }))));
+    formData.append('items', JSON.stringify(items));
     formData.append('payment_screenshot', file);
+
+    // Log FormData content
+    for (let [key, value] of formData.entries()) {
+      console.log(`FormData ${key}:`, value);
+    }
 
     try {
       const response = await axios.post('/orders', formData, {
@@ -53,6 +67,7 @@ function Cart() {
           'Content-Type': 'multipart/form-data',
         },
       });
+      console.log('Order success:', response.data);
       clearCart();
       alert(t('order.success'));
       navigate('/dashboard');
