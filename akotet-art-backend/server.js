@@ -31,7 +31,7 @@ db.connect((err) => {
 // Middleware to verify JWT
 const authenticateToken = (req, res, next) => {
   const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1]; // Bearer TOKEN
+  const token = authHeader && authHeader.split(' ')[1];
 
   if (!token) {
     return res.status(401).json({ error: 'Access token required' });
@@ -112,12 +112,7 @@ app.post('/api/auth/login', async (req, res) => {
   });
 });
 
-// Test protected route (admin only)
-app.get('/api/admin/dashboard', authenticateToken, isAdmin, (req, res) => {
-  res.json({ message: 'Welcome to the admin dashboard' });
-});
-
-// Test products route
+// Get all products
 app.get('/api/products', (req, res) => {
   db.query('SELECT * FROM products', (err, results) => {
     if (err) {
@@ -125,6 +120,25 @@ app.get('/api/products', (req, res) => {
     }
     res.json(results);
   });
+});
+
+// Get single product by ID
+app.get('/api/products/:id', (req, res) => {
+  const { id } = req.params;
+  db.query('SELECT * FROM products WHERE id = ?', [id], (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: err.message });
+    }
+    if (results.length === 0) {
+      return res.status(404).json({ error: 'Product not found' });
+    }
+    res.json(results[0]);
+  });
+});
+
+// Test protected route (admin only)
+app.get('/api/admin/dashboard', authenticateToken, isAdmin, (req, res) => {
+  res.json({ message: 'Welcome to the admin dashboard' });
 });
 
 app.get('/', (req, res) => {

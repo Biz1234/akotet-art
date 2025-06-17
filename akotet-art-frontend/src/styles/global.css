@@ -1,0 +1,28 @@
+
+
+/* CSS Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f5f0e1; /* Beige background for warm Ethiopian aesthetic */
+  color: #333;
+}
+
+a {
+  text-decoration: none;
+  color: #8b4513; /* Warm wood tone */
+}
+
+a:hover {
+  color: #d2691e; /* Slightly brighter hover effect */
+}
+
+button {
+  cursor: pointer;
+}

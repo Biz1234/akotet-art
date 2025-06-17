@@ -1,0 +1,160 @@
+
+.landing-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 2px solid #8b4513;
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #8b4513;
+}
+
+nav {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+nav a {
+  font-size: 1.1rem;
+}
+
+.language-switcher button {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  color: #8b4513;
+  margin-left: 10px;
+}
+
+.language-switcher button:hover {
+  color: #d2691e;
+}
+
+main {
+  text-align: center;
+  padding: 40px 0;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 1.2rem;
+  margin-bottom: 40px;
+}
+
+.featured-products {
+  margin: 40px 0;
+}
+
+.featured-products h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.product-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+.product-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.product-card h3 {
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+
+.btn-details {
+  display: inline-block;
+  background: #8b4513;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.btn-details:hover {
+  background: #d2691e;
+}
+
+.cta-button {
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  padding: 15px 30px;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  margin-top: 20px;
+}
+
+.cta-button:hover {
+  background: #333;
+}
+
+.spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #8b4513;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  nav {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+}
