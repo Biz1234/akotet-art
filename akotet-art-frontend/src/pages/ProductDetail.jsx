@@ -1,21 +1,23 @@
-
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useParams, Link } from 'react-router-dom';
-import axios from 'axios';
+import { useParams, Link, useNavigate } from 'react-router-dom';
+import axios from '../axiosConfig';
+import { useCart } from './CartContext';
 import '../styles/product-detail.css';
 
 function ProductDetail() {
   const { t } = useTranslation();
   const { id } = useParams();
+  const navigate = useNavigate();
+  const { addToCart } = useCart();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_API_URL}/products/${id}`)
+      .get(`/products/${id}`)
       .then((response) => {
         setProduct(response.data);
         setLoading(false);
@@ -35,15 +37,20 @@ function ProductDetail() {
   };
 
   const handleAddToCart = () => {
-    // Placeholder for cart functionality (to be implemented later)
-    alert(`${quantity} ${product.title} added to cart!`);
+    if (quantity > 0 && product) {
+      addToCart(product, quantity);
+      alert(t('cart.added'));
+      navigate('/cart');
+    } else {
+      setError(t('cart.invalid_quantity'));
+    }
   };
 
   if (loading) {
     return <div className="spinner"></div>;
   }
 
-  if (error) {
+  if (error && !product) {
     return <div className="error">{error}</div>;
   }
 
@@ -54,6 +61,7 @@ function ProductDetail() {
         <nav>
           <Link to="/">{t('nav.home')}</Link>
           <Link to="/browse">{t('nav.browse')}</Link>
+          <Link to="/cart">{t('nav.cart')}</Link>
           <Link to="/login">{t('nav.login')}</Link>
           <Link to="/signup">{t('nav.signup')}</Link>
         </nav>
@@ -79,6 +87,7 @@ function ProductDetail() {
                 onChange={handleQuantityChange}
               />
             </div>
+            {error && <p className="error">{error}</p>}
             <div className="action-buttons">
               <button onClick={handleAddToCart} className="btn-add-cart">
                 {t('product.add_to_cart')}

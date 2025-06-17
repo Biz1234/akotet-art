@@ -1,27 +1,21 @@
 import { Routes, Route } from 'react-router-dom';
-import LandingPage from './pages/LandingPage.jsx';
-import ProductDetail from './pages/ProductDetail.jsx';
-import UserDashboard from './pages/UserDashboard.jsx';
+import LandingPage from './pages/LandingPage';
+import UserDashboard from './pages/UserDashboard';
+import ProductDetail from './pages/ProductDetail';
 import Login from './pages/Login.jsx';
 import Signup from './pages/Signup.jsx';
-import ProtectedRoute from './components/ProtectedRoute.jsx';
-import './styles/global.css';
+import Cart from './pages/Cart';
 
 function App() {
   return (
-    <div className="app-container">
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/product/:id" element={<ProductDetail />} />
-        <Route path="/browse" element={<UserDashboard />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route
-          path="/dashboard"
-          element={<ProtectedRoute element={<UserDashboard />} />}
-        />
-      </Routes>
-    </div>
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/browse" element={<UserDashboard />} />
+      <Route path="/product/:id" element={<ProductDetail />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
+      <Route path="/cart" element={<Cart />} />
+    </Routes>
   );
 }
 

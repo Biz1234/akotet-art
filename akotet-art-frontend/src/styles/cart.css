@@ -1,4 +1,4 @@
-.product-detail-container {
+.cart-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
@@ -34,57 +34,66 @@ nav a:hover {
   color: #d2691e;
 }
 
-.product-details {
-  display: flex;
-  gap: 40px;
+main {
   margin-top: 40px;
 }
 
-.product-details img {
-  width: 50%;
-  max-width: 500px;
-  height: auto;
-  border-radius: 8px;
-  object-fit: cover;
-}
-
-.product-info {
-  flex: 1;
-}
-
-.product-info h1 {
+h1 {
   font-size: 2rem;
   color: #333;
   margin-bottom: 20px;
 }
 
-.product-info p {
-  font-size: 1.1rem;
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cart-item {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.cart-item img {
+  width: 100px;
+  height: auto;
+  border-radius: 8px;
+}
+
+.item-details {
+  flex: 1;
+}
+
+.item-details h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.item-details p {
+  font-size: 1rem;
   margin-bottom: 10px;
 }
 
 .quantity-selector {
-  margin: 20px 0;
-}
-
-.quantity-selector label {
-  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .quantity-selector input {
+  width: 60px;
   padding: 5px;
   font-size: 1rem;
-  width: 60px;
 }
 
-.action-buttons {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.btn-add-cart,
-.btn-contact {
+.btn-remove,
+.btn-submit-order,
+.btn-browse {
   background: #8b4513;
   color: #fff;
   padding: 10px 20px;
@@ -92,12 +101,33 @@ nav a:hover {
   border: none;
   font-size: 1rem;
   cursor: pointer;
-  text-decoration: none;
 }
 
-.btn-add-cart:hover,
-.btn-contact:hover {
+.btn-remove:hover,
+.btn-submit-order:hover,
+.btn-browse:hover {
   background: #d2691e;
+}
+
+.cart-summary {
+  margin-top: 40px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.cart-summary h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.file-upload {
+  margin-bottom: 20px;
+}
+
+.file-upload label {
+  margin-right: 10px;
 }
 
 .error {
@@ -106,33 +136,15 @@ nav a:hover {
   margin: 10px 0;
 }
 
-.spinner {
-  border: 4px solid #f3f3f3;
-  border-top: 4px solid #8b4513;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  animation: spin 1s linear infinite;
-  margin: 40px auto;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
 /* Mobile responsiveness */
 @media (max-width: 768px) {
-  .product-details {
+  .cart-item {
     flex-direction: column;
   }
 
-  .product-details img {
+  .cart-item img {
     width: 100%;
+    max-width: 200px;
   }
 
   header {
